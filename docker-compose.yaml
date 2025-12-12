@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  # 1. MongoDB (Banco NoSQL)
+  mongodb:
+    image: mongo:latest
+    container_name: projeto_mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+
+  # 2. MinIO (Data Lake)
+  minio:
+    image: minio/minio
+    container_name: projeto_datalake
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: password123
+    command: server /data --console-address ":9001"
